@@ -62,7 +62,7 @@ public class MyApp {
                         System.out.println("TEST " + entityFromTask.getValue());
 
                     }
-                    taskService.complete(task.getId());
+//                    taskService.complete(task.getId());
 
                 }
 
