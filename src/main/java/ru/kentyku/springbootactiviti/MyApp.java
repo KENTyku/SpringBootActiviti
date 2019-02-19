@@ -1,7 +1,5 @@
-package ru;
+package ru.kentyku.springbootactiviti;
 
-
-import javax.sql.DataSource;
 
 import java.util.List;
 
@@ -10,13 +8,14 @@ import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
+import org.activiti.spring.boot.SecurityAutoConfiguration;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 public class MyApp {
 
     public static void main(String[] args) {
@@ -52,25 +51,4 @@ public class MyApp {
         };
 
     }
-
-    @Bean
-    public DataSource database() {
-        return DataSourceBuilder.create()
-                .url("jdbc:mysql://127.0.0.1:3306/activiti-spring-boot?characterEncoding=UTF-8")
-                .username("root")
-                .password("123456")
-                .driverClassName("com.mysql.jdbc.Driver")
-                .build();
-    }
-
-//    @Bean
-//    public DataSource database() {
-//        return DataSourceBuilder.create()
-//                .url("jdbc:mysql://127.0.0.1:3306/activiti-spring-boot?characterEncoding=UTF-8")
-//                .username("root")
-//                .password("123456")
-//                .driverClassName("com.mysql.jdbc.Driver")
-//                .build();
-//    }
-
 }
