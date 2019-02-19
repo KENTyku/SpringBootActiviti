@@ -7,8 +7,12 @@
 
         <startEvent id="theStart" />
 
-        <sequenceFlow id="flow1" sourceRef="theStart" targetRef="writeReportTask" />
+        <sequenceFlow id="flow1" sourceRef="theStart" targetRef="theTask" />
+        <!--use variable "entityToUpdate" from process-->
+        <serviceTask id='theTask' name='updateJPAEntityTask'
+                     activiti:expression="${entityToUpdate.setValue('Bye')}" />
 
+        <sequenceFlow id="flow1-1" sourceRef="theTask" targetRef="writeReportTask" />
         <userTask id="writeReportTask" name="Write monthly financial report" >
             <documentation>
                 Write monthly financial report for publication to shareholders.

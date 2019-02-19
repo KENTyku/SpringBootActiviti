@@ -2,6 +2,7 @@ package ru.kentyku.springbootactiviti.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 
@@ -10,6 +11,7 @@ public class FieldAccessJPAEntity {
 
     @Id
     @Column(name = "ID_")
+    @GeneratedValue
     private Long id;
 
     private String value;
