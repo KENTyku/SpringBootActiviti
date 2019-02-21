@@ -1,0 +1,54 @@
+version: '2'
+#описываем сервисы
+services:
+  #сервис web
+  web:
+    container_name: web
+    #создаем его из докерфайла лежащего в папке контекста сборки( где лежит Docerfile, т.е. папка нашего приложения)
+    build: .
+    #Связывает 8080 порт контейнера с 8080 портом на хосте (чтобы подключиться по http)
+    ports:
+      - "8080:8080"
+    #монтируем папку проекта хоста к папке контейнера /code
+    volumes:
+      - .:/code
+    # связываем с сервисом mydb
+    depends_on:
+      - mydb
+#    networks:
+#      - mynet
+  mydb:
+    image: mysql:5
+    container_name: mydb
+    command: --max_connections=300 --max_allowed_packet=67108864
+    cpu_shares: 10
+    memswap_limit: 1536m
+    mem_limit: 1024m
+    environment:
+    - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    - MYSQL_ROOT_HOST=%
+    expose:
+    - "3306"
+#    networks:
+#      - mynet
+
+
+
+
+
+#version: '2'
+#services:
+#mydb:
+#image: mysql
+#container_name: mydb
+#networks:
+#- todonet
+#web:
+#build: ../.
+#networks:
+#- todonet
+#ports:
+#- "3000"
+#networks:
+#todonet:
+#driver: bridge
