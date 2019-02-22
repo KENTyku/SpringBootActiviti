@@ -6,6 +6,8 @@ services:
     container_name: web
     #создаем его из докерфайла лежащего в папке контекста сборки( где лежит Docerfile, т.е. папка нашего приложения)
     build: .
+    #задаем явно имя создаваемому образу
+    image: myimage/web
     #Связывает 8080 порт контейнера с 8080 портом на хосте (чтобы подключиться по http)
     ports:
       - "8080:8080"
@@ -35,20 +37,3 @@ services:
 
 
 
-
-#version: '2'
-#services:
-#mydb:
-#image: mysql
-#container_name: mydb
-#networks:
-#- todonet
-#web:
-#build: ../.
-#networks:
-#- todonet
-#ports:
-#- "3000"
-#networks:
-#todonet:
-#driver: bridge
