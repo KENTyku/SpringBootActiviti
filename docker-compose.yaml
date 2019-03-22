@@ -29,6 +29,9 @@ services:
     environment:
     - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     - MYSQL_ROOT_HOST=%
+# для подключения с msql воркбенч локальной машниы порта 3366 к контейнеру mydb на 3306
+    ports:
+      - "3366:3306"
     expose:
     - "3306"
 #    networks:
